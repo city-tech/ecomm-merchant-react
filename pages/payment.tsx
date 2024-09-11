@@ -25,9 +25,7 @@ const Payment = () => {
 
     return (
         <div style={styles.container}>
-            <>
-                <div id="checkout"></div>
-            </>
+            <div id="checkout"></div>
         </div>
     );
 };
