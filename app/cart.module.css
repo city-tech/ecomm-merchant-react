@@ -1,0 +1,124 @@
+.cartContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 20px 20px 20px;
+    min-height: 100vh;
+}
+
+.cartList {
+    list-style: none;
+    padding: 0;
+}
+
+.cartItem {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.productImage img {
+    max-width: 100px;
+    border-radius: 8px;
+}
+
+.productDetails {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.removeBtn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.removeBtn:hover {
+    background-color: #c0392b;
+}
+
+.cartSummary {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.clearBtn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 13px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.clearBtn {
+    background-color: #e74c3c;
+    margin-right: 10px;
+}
+
+ .clearBtn:hover {
+    opacity: 0.9;
+}
+
+.checkoutContainer {
+    display: flex;
+    align-items: center;
+    float: right;
+    width: 196px;
+}
+
+.checkoutBtn {
+    display: block;
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: .5em;
+    padding: 0.8em;
+    cursor: pointer;
+    background-color: green;
+    border-radius: .33rem;
+    border-color: var(--wp--preset--color--contrast);
+    border-width: 0;
+    color: white;
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--small);
+    font-style: normal;
+    font-weight: 500;
+    line-height: inherit;
+    text-decoration: none;
+    width: 200px;
+}
+
+.emptyCart {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.shopLink {
+    display: inline-block;
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.shopLink:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .cartItem {
+        flex-direction: column;
+    }
+
+    .checkoutContainer {
+        flex-direction: column;
+    }
+}
