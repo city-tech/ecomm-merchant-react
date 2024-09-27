@@ -14,9 +14,10 @@ const Payment = () => {
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = BUNDLE_URL;
+       // script.src = BUNDLE_URL;
+        script.src = '/bundle.js';
         script.async = true;
-        script.onload = () => console.log('GetPay script loaded successfully');
+        script.onload = () => console.log('GetPay script loaded successfully on payment page');
         document.body.appendChild(script);
         return () => {
             document.body.removeChild(script);
