@@ -93,6 +93,7 @@ const initializeGetPay = () => {
                 city: "Kathmandu",
                 address: "Chabahil",
             },
+            clientRequestId:"CLIENT123"
             papInfo: process.env.NEXT_PUBLIC_PAP_INFO,
             oprKey: process.env.NEXT_PUBLIC_OPR_KEY,
             insKey: process.env.NEXT_PUBLIC_INS_KEY,
