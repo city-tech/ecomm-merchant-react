@@ -84,36 +84,15 @@ const orderInformationHtml = getOrderInformationHtml(cartItems, calculateTotal()
 const initializeGetPay = () => {
         setIsLoading(true);
         const options = {
-            userInfo: {
-                name: "John Doe",
-                email: "john@gmail.com",
-                state: "Bagmati",
-                country: "Nepal",
-                zipcode: "44600",
-                city: "Kathmandu",
-                address: "Chabahil",
-            },
-            papInfo: process.env.NEXT_PUBLIC_PAP_INFO,
-            oprKey: process.env.NEXT_PUBLIC_OPR_KEY,
-            insKey: process.env.NEXT_PUBLIC_INS_KEY,
+            mid: process.env.NEXT_PUBLIC_MID,
+            tid: process.env.NEXT_PUBLIC_TID,
+            username: process.env.NEXT_PUBLIC_USERNAME,
+            password: process.env.NEXT_PUBLIC_PASSWORD,
             websiteDomain: process.env.NEXT_PUBLIC_WEBSITE_DOMAIN,
-            price: calculateTotal(),
+            amount: calculateTotal(),
             businessName: process.env.NEXT_PUBLIC_BUSINESS_NAME,
             imageUrl: process.env.NEXT_PUBLIC_LOGO_URL,
             currency: "NPR",
-            prefill: {
-                name: true,
-                email: true,
-                state: true,
-                city: true,
-                address: true,
-                zipcode: true,
-                country: true
-            },
-            disableFields: {
-                address: true,
-                state: true,
-            },
             callbackUrl: {
                 successUrl: process.env.NEXT_PUBLIC_SUCCESS_URL,
                 failUrl: process.env.NEXT_PUBLIC_FAIL_URL,
