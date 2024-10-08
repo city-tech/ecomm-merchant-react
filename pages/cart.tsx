@@ -55,6 +55,7 @@ const Cart = () => {
                 city: "Kathmandu",
                 address: "Chabahil",
             },
+            clientRequestId:"CLIENT123",
             papInfo: process.env.NEXT_PUBLIC_PAP_INFO,
             oprKey: process.env.NEXT_PUBLIC_OPR_KEY,
             insKey: process.env.NEXT_PUBLIC_INS_KEY,
@@ -100,6 +101,7 @@ const Cart = () => {
         if (cartItems?.length > 0) {
             const script = document.createElement('script');
             script.src = BUNDLE_URL;
+            // script.src = '/bundle.js';
             script.async = true;
             script.onload = () => console.log('GetPay script loaded successfully');
             document.body.appendChild(script);
