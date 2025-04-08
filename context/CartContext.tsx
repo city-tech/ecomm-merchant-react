@@ -1,28 +1,32 @@
-import {createContext, useState, useContext} from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
+import {CartContextType, Product} from "@/context/cartTypes";
 
-const CartContext = createContext();
 
-export const useCart = () => useContext(CartContext);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider = ({children}) => {
-    const [cartItems, setCartItems] = useState([]);
+export const useCart = (): CartContextType => {
+    const context = useContext(CartContext);
+    if (!context) {
+        throw new Error('useCart must be used within a CartProvider');
+    }
+    return context;
+};
 
-    const addToCart = (product) => {
+export const CartProvider = ({ children }: { children: ReactNode }) => {
+    const [cartItems, setCartItems] = useState<Product[]>([]);
+
+    const addToCart = (product: Product) => {
         setCartItems((prevItems) => [...prevItems, product]);
     };
 
-    const removeFromCart = (id) => {
+    const removeFromCart = (id: number) => {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
     };
 
     const clearCart = () => setCartItems([]);
 
     const calculateTotal = () => {
-        let total = 0;
-        cartItems.forEach((item) => {
-            total += item?.price;
-        });
-        return total;
+        return cartItems.reduce((total, item) => total + item.price, 0);
     };
 
     const calculateCheckoutTotal = () => {
@@ -34,15 +38,17 @@ export const CartProvider = ({children}) => {
     };
 
     return (
-        <CartContext.Provider value={{
-            cartItems,
-            addToCart,
-            removeFromCart,
-            clearCart,
-            calculateTotal,
-            getCartItemCount,
-            calculateCheckoutTotal
-        }}>
+        <CartContext.Provider
+            value={{
+                cartItems,
+                addToCart,
+                removeFromCart,
+                clearCart,
+                calculateTotal,
+                getCartItemCount,
+                calculateCheckoutTotal,
+            }}
+        >
             {children}
         </CartContext.Provider>
     );

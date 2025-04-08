@@ -1,4 +1,6 @@
-export const products = [
+import {Product} from "@/context/cartTypes";
+
+export const products:Product[] = [
     {
         id: 1,
         name: 'Adidas Ultraboost X',

@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fcdbc34-2677-46ff-b4d6-8024eaaf5a76" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/context/cartTypes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/context/CartContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/context/CartContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/mock.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/cart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/cart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/payment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/payment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +38,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2ldphSpUXBGTLvLAVxJy5ruV4OG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,15 +50,19 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/krishna/Documents/projects/CityTech/ecomm-merchant-react/public",
+    "git-widget-placeholder": "dev",
+    "last_opened_file_path": "/home/ashish/Documents/ecomm-merchant-react",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/home/ashish/.nvm/versions/node/v18.20.5/bin/node",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/krishna/Documents/projects/CityTech/ecomm-merchant-react/node_modules/typescript/lib",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "/home/ashish/Documents/ecomm-merchant-react/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -58,6 +72,13 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/pages" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -69,6 +90,7 @@
       <updated>1725519926249</updated>
       <workItem from="1725519927377" duration="44290000" />
       <workItem from="1728383828602" duration="2079000" />
+      <workItem from="1744108257679" duration="2085000" />
     </task>
     <servers />
   </component>
