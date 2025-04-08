@@ -15,6 +15,7 @@ const Payment = () => {
     useEffect(() => {
         const script = document.createElement('script');
         script.src = BUNDLE_URL;
+        // script.src = '/bundle.js';
         script.async = true;
         script.onload = () => console.log('GetPay script loaded successfully');
         document.body.appendChild(script);
@@ -25,9 +26,7 @@ const Payment = () => {
 
     return (
         <div style={styles.container}>
-            <>
-                <div id="checkout"></div>
-            </>
+            <div id="checkout"></div>
         </div>
     );
 };
