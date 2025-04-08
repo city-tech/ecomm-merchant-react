@@ -5,6 +5,12 @@ import toast from 'react-hot-toast';
 
 import {useCart} from '@/context/CartContext';
 import styles from '@/app/cart.module.css';
+import {PaymentOptions, Product} from "@/context/cartTypes";
+declare global {
+    interface Window {
+        GetPay: new (arg0: PaymentOptions) => {initialize: () => void};
+    }
+}
 
 const Cart = () => {
     const {cartItems, removeFromCart, calculateTotal, clearCart, calculateCheckoutTotal} = useCart();
@@ -12,7 +18,7 @@ const Cart = () => {
 
     const BUNDLE_URL = process.env.NEXT_PUBLIC_BUNDLE_URL || 'https://minio.finpos.global/getpay-cdn/webcheckout/bundle.js';
 
-    const getOrderInformationHtml = (cartItems, totalAmount) => {
+    const getOrderInformationHtml = (cartItems: Product[], totalAmount: number) => {
         let html = `
             <div>
               <h3>Order Information</h3>
@@ -45,7 +51,7 @@ const Cart = () => {
 
     const initializeGetPay = () => {
         setIsLoading(true);
-        const options = {
+        const options:PaymentOptions = {
             userInfo: {
                 name: "John Doe",
                 email: "john@gmail.com",
@@ -55,7 +61,7 @@ const Cart = () => {
                 city: "Kathmandu",
                 address: "Chabahil",
             },
-            clientRequestId:"CLIENT123",
+            clientRequestId: "CLIENT123",
             papInfo: process.env.NEXT_PUBLIC_PAP_INFO,
             oprKey: process.env.NEXT_PUBLIC_OPR_KEY,
             insKey: process.env.NEXT_PUBLIC_INS_KEY,
@@ -65,33 +71,26 @@ const Cart = () => {
             imageUrl: process.env.NEXT_PUBLIC_LOGO_URL,
             currency: "NPR",
             prefill: {
-                name: true,
-                email: true,
-                state: true,
-                city: true,
-                address: true,
-                zipcode: true,
-                country: true
+                name: true, email: true, state: true, city: true, address: true, zipcode: true, country: true
             },
             disableFields: {
-                address: true,
-                state: true,
+                address: true, state: true,
             },
             callbackUrl: {
-                successUrl: process.env.NEXT_PUBLIC_SUCCESS_URL,
-                failUrl: process.env.NEXT_PUBLIC_FAIL_URL,
+                successUrl: process.env.NEXT_PUBLIC_SUCCESS_URL, failUrl: process.env.NEXT_PUBLIC_FAIL_URL,
             },
             themeColor: "#5662FF",
             orderInformationUI: `${orderInformationHtml}`,
-            onSuccess: (options) => {
+            onSuccess: () => {
                 window.location.href = "./payment";
             },
-            onError: (error) => {
+            onError: (error:{error:string}) => {
                 setIsLoading(false);
                 toast?.error(error?.error)
                 console.log("Error details:", error);
             },
         };
+
 
         const getPay = new window.GetPay(options);
         getPay.initialize();
@@ -111,48 +110,34 @@ const Cart = () => {
         }
     }, []);
 
-    return (
-        <LoadingOverlay
+    return (<LoadingOverlay
             active={isLoading}
             spinner
             text="Loading..."
             styles={{
                 wrapper: {
-                    width: '100%',
-                    height: '100%',
-                    position: 'relative',
-                    zIndex: 9999,
-                },
-                overlay: (base) => ({
+                    width: '100%', height: '100%', position: 'relative', zIndex: 9999,
+                }, overlay: (base) => ({
                     ...base,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                }),
-                spinner: (base) => ({
-                    ...base,
-                    width: '100px', // Customize the spinner size if necessary
-                }),
-                content: {
-                    textAlign: 'center',
-                    color: '#fff',
-                    fontSize: '20px', // Customize the loading text size
+                }), spinner: (base) => ({
+                    ...base, width: '100px', // Customize the spinner size if necessary
+                }), content: {
+                    textAlign: 'center', color: '#fff', fontSize: '20px', // Customize the loading text size
                 },
             }}
         >
             <div className={styles.cartContainer}>
                 <h1>My Cart</h1>
-                {cartItems?.length === 0 ? (
-                    <div className={styles.emptyCart}>
+                {cartItems?.length === 0 ? (<div className={styles.emptyCart}>
                         <h2>Your cart is empty</h2>
                         <Link href="/" className={styles.shopLink}>Go back to shopping</Link>
-                    </div>
-                ) : (
-                    <>
+                    </div>) : (<>
                         <ul className={styles.cartList}>
-                            {cartItems.map((item, idx) => (
-                                <li key={idx} className={styles.cartItem}>
+                            {cartItems.map((item, idx) => (<li key={idx} className={styles.cartItem}>
                                     <div className={styles.productImage}>
                                         <img src={item?.image} alt={item?.name}/>
                                     </div>
@@ -163,8 +148,7 @@ const Cart = () => {
                                             Remove
                                         </button>
                                     </div>
-                                </li>
-                            ))}
+                                </li>))}
                         </ul>
 
                         <div className={styles.cartSummary}>
@@ -179,11 +163,9 @@ const Cart = () => {
                                 </button>
                             </div>
                         </div>
-                    </>
-                )}
+                    </>)}
             </div>
-        </LoadingOverlay>
-    );
+        </LoadingOverlay>);
 };
 
 export default Cart;
