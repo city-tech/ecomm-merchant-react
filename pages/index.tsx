@@ -13,7 +13,7 @@ const Index = () => {
             <header className={styles.header}>
                 <h1>Product List</h1>
                 <div className={styles.cartCountContainer}>
-                    <Link href="/cart">
+                    <Link href="/Checkout">
                     <span className={styles.cartCountIcon}>🛒</span>
                     <span className={styles.cartCount}>{getCartItemCount()} items</span>
                     </Link>

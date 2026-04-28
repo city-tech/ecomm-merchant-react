@@ -10,12 +10,14 @@ export interface PaymentOptions {
     };
     clientRequestId: string;
     papInfo?: string;
+    allowBillingAddressFields: boolean;
     oprKey?: string;
     insKey?: string;
     websiteDomain?: string;
     price: number;
     businessName?: string;
     imageUrl?: string;
+    baseUrl?: string;
     currency: string;
     prefill: {
         name: boolean;
