@@ -19,6 +19,11 @@ export interface PaymentOptions {
     imageUrl?: string;
     baseUrl?: string;
     currency: string;
+    userName: string;
+    passWord: string;
+    secretKey: string;
+    controllNumber: string;
+    serialNumber: string;
     prefill: {
         name: boolean;
         email: boolean;
@@ -38,7 +43,7 @@ export interface PaymentOptions {
     };
     themeColor: string;
     orderInformationUI: string;
-    onSuccess: () => void;
+    onSuccess: (data: any) => void;
     onError: (error: { error: string }) => void;
 }
 

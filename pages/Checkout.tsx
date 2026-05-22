@@ -9,8 +9,8 @@ import { PaymentOptions, Product } from "@/context/cartTypes";
 declare global {
     interface Window {
         GetPay: new (arg0: PaymentOptions) => {
-            init: any; initialize: () => void 
-};
+            init: any; initialize: () => void
+        };
     }
 }
 
@@ -18,7 +18,7 @@ const Checkout = () => {
     const { cartItems, removeFromCart, calculateTotal, clearCart, calculateCheckoutTotal } = useCart();
     const [isLoading, setIsLoading] = useState(false);
 
-    const BUNDLE_URL = process.env.NEXT_PUBLIC_BUNDLE_URL || 'https://minio.finpos.global/getpay-cdn/webcheckout/v5/bundle.js';
+    const BUNDLE_URL = process.env.NEXT_PUBLIC_BUNDLE_URL ;
 
     const getOrderInformationHtml = (cartItems: Product[], totalAmount: number) => {
         let html = `
@@ -74,6 +74,11 @@ const Checkout = () => {
             imageUrl: process.env.NEXT_PUBLIC_LOGO_URL,
             baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
             currency: "NPR",
+            userName: '',
+            passWord: '',
+            secretKey: '',
+            controllNumber: '',
+            serialNumber: '',
             prefill: {
                 name: true,
                 email: true,
@@ -94,8 +99,12 @@ const Checkout = () => {
             },
             themeColor: "#5662FF",
             orderInformationUI: orderInformationHtml,
-            onSuccess: () => {
-                window.location.href = "/payment";
+            onSuccess: (data: any) => {
+                localStorage.setItem('sessionLink',data?.initPaymentContextResponse?.data?.sessionJsLink || '');
+                if (data?.initPaymentContextResponse?.data?.sessionJsLink) {
+                       window.location.href = "/payment";
+                }
+             
             },
             onError: (error: { error: string }) => {
                 setIsLoading(false);

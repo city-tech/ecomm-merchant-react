@@ -1,3 +1,4 @@
+
 import {useEffect} from "react";
 
 const Payment = () => {
@@ -13,14 +14,21 @@ const Payment = () => {
     };
 
     useEffect(() => {
+        const sessionLink = window.localStorage.getItem('sessionLink');
         const script = document.createElement('script');
-        script.src = BUNDLE_URL;
+        const scriptUrl = new URL(BUNDLE_URL);
+
+        if (sessionLink) {
+            scriptUrl.searchParams.set('sessionLink', sessionLink);
+        }
+
+        script.src = scriptUrl.toString();
         // script.src = '/bundle.js';
         script.async = true;
         script.onload = () => console.log('GetPay script loaded successfully');
         document.body.appendChild(script);
         return () => {
-            document.body.removeChild(script);
+            document.body.removeChild(script);   
         };
     }, []);
 
