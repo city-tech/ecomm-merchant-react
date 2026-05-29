@@ -13,24 +13,50 @@ const Payment = () => {
         },
     };
 
-    useEffect(() => {
-        const sessionLink = window.localStorage.getItem('sessionLink');
-        const script = document.createElement('script');
-        const scriptUrl = new URL(BUNDLE_URL);
+   useEffect(() => {
+    const sessionLink = window.localStorage.getItem("sessionLink");
 
-        if (sessionLink) {
-            scriptUrl.searchParams.set('sessionLink', sessionLink);
+    if (!sessionLink || !BUNDLE_URL) return;
+
+    const sessionScript = document.createElement("script");
+    const bundleScript = document.createElement("script");
+
+    sessionScript.src = sessionLink;
+    sessionScript.async = true;
+
+    bundleScript.src = BUNDLE_URL;
+    bundleScript.async = true;
+
+    const handleBundleLoad = () => {
+        console.log("Bundle script loaded");
+        (window as any).loadMPGSScript?.();
+    };
+
+    const handleSessionLoad = () => {
+        console.log("Session script loaded");
+
+        bundleScript.onload = handleBundleLoad;
+
+        document.body.appendChild(bundleScript);
+    };
+
+    sessionScript.onload = handleSessionLoad;
+
+    document.body.appendChild(sessionScript);
+
+    return () => {
+        sessionScript.onload = null;
+        bundleScript.onload = null;
+
+        if (document.body.contains(sessionScript)) {
+            document.body.removeChild(sessionScript);
         }
 
-        script.src = scriptUrl.toString();
-        // script.src = '/bundle.js';
-        script.async = true;
-        script.onload = () => console.log('GetPay script loaded successfully');
-        document.body.appendChild(script);
-        return () => {
-            document.body.removeChild(script);   
-        };
-    }, []);
+        if (document.body.contains(bundleScript)) {
+            document.body.removeChild(bundleScript);
+        }
+    };
+}, []);
 
     return (
         <div style={styles.container}>
