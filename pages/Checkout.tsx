@@ -74,11 +74,6 @@ const Checkout = () => {
             imageUrl: process.env.NEXT_PUBLIC_LOGO_URL,
             baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
             currency: "NPR",
-            userName: '',
-            passWord: '',
-            secretKey: '',
-            controllNumber: '',
-            serialNumber: '',
             prefill: {
                 name: true,
                 email: true,
@@ -100,10 +95,9 @@ const Checkout = () => {
             themeColor: "#5662FF",
             orderInformationUI: orderInformationHtml,
             onSuccess: (data: any) => {
-                localStorage.setItem('sessionLink',data?.initPaymentContextResponse?.data?.sessionJsLink || '');
-                if (data?.initPaymentContextResponse?.data?.sessionJsLink) {
+               
                        window.location.href = "/payment";
-                }
+            
              
             },
             onError: (error: { error: string }) => {
